@@ -3,6 +3,7 @@ package jinny.app.lottery.service;
 import java.util.ArrayList;
 import java.util.List;
 import jinny.app.lottery.LottoDrwNo;
+import jinny.app.lottery.domain.LottoNumberFetchInfo;
 import jinny.app.lottery.webclient.LottoNumberResponse;
 import jinny.app.lottery.webclient.LottoNumberWebClient;
 import org.springframework.stereotype.Service;
@@ -18,22 +19,21 @@ public class LottoDataFetchService {
         this.lottoNumberWebClient = lottoNumberWebClient;
     }
 
-    public List<LottoNumberResponse> fetchLottoNumbers() {
+    public LottoNumberFetchInfo fetchLottoNumbers(int fetchSize) {
         int latestDrw = LottoDrwNo.calcLastLottoDrwNo();
-        List<LottoNumberResponse> lottoNumbers = fetchLottoNumbers(latestDrw);
 
-        return lottoNumbers;
+        return fetchLottoNumbersByDrw(latestDrw, fetchSize);
     }
 
-    public List<LottoNumberResponse> fetchLottoNumbers(int lastDrw) {
+    public LottoNumberFetchInfo fetchLottoNumbersByDrw(int lastDrw, int fetchSize) {
         List<LottoNumberResponse> results = new ArrayList<>();
 
-        int i = FETCH_COUNT -1;
+        int i = fetchSize -1;
         while (i >= 0) {
             results.add(getLottoNumber(lastDrw - i));
         }
 
-        return results;
+        return new LottoNumberFetchInfo(lastDrw, results);
     }
 
     public LottoNumberResponse getLottoNumber(int drwNo) {
