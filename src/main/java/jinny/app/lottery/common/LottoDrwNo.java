@@ -1,4 +1,4 @@
-package jinny.app.lottery;
+package jinny.app.lottery.common;
 
 public class LottoDrwNo {
 

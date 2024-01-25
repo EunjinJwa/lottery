@@ -23,8 +23,6 @@ public class LottoNumberWebClient {
         Gson gson = new Gson();
         LottoNumberResponse result = gson.fromJson(responseBody, LottoNumberResponse.class);
 
-        System.out.println(result);
-
         return result;
     }
 

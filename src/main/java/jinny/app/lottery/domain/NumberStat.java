@@ -15,12 +15,16 @@ public class NumberStat {
 
     public NumberStat(int number) {
         this.number = number;
-        this.hitCount = 1;
+        this.hitCount = 0;
         this.lastDiff = 0;
     }
 
     // 직전 회차 당첨 여부
     public boolean isPrevDrwHit() {
         return lastDiff == 1;
+    }
+
+    public void addHit() {
+        hitCount = 1 + hitCount;
     }
 }

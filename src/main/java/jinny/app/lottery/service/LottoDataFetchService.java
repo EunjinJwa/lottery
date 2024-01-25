@@ -2,7 +2,7 @@ package jinny.app.lottery.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import jinny.app.lottery.LottoDrwNo;
+import jinny.app.lottery.common.LottoDrwNo;
 import jinny.app.lottery.domain.LottoNumberFetchInfo;
 import jinny.app.lottery.webclient.LottoNumberResponse;
 import jinny.app.lottery.webclient.LottoNumberWebClient;
@@ -31,6 +31,7 @@ public class LottoDataFetchService {
         int i = fetchSize -1;
         while (i >= 0) {
             results.add(getLottoNumber(lastDrw - i));
+            i--;
         }
 
         return new LottoNumberFetchInfo(lastDrw, results);

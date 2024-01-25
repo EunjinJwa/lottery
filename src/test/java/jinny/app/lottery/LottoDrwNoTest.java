@@ -1,7 +1,6 @@
 package jinny.app.lottery;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import jinny.app.lottery.common.LottoDrwNo;
 import org.junit.jupiter.api.Test;
 
 class LottoDrwNoTest {
@@ -12,7 +11,7 @@ class LottoDrwNoTest {
 
     @Test
     public void calcLastLottoDrwNo() {
-        calcLastLottoDrwNo();
+        System.out.println(LottoDrwNo.calcLastLottoDrwNo());
 
     }
 
