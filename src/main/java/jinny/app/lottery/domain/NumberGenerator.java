@@ -1,5 +1,6 @@
 package jinny.app.lottery.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -12,26 +13,28 @@ public class NumberGenerator {
         new NumberSetGenerator(numberStats);
     }
 
-    public static Set<Integer> genNumbersByAlorithm1() {
-        Set<Integer> genNumbers = new HashSet<>();
-        genNumbers.add(pickNumber("Type1"));
-        genNumbers.add(pickNumber("Type2"));
-        genNumbers.add(pickNumber("Type3"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type5"));
+    public static Set<String> genNumbersByAlorithm1() {
+        Set<String> genNumbers = new HashSet<>();
+        genNumbers.addAll(pickNumber("Type1", 1));
+        genNumbers.addAll(pickNumber("Type2", 1));
+        genNumbers.addAll(pickNumber("Type3", 1));
+        genNumbers.addAll(pickNumber("Type4", 2));
+        genNumbers.addAll(pickNumber("Type5", 1));
 
         return genNumbers;
     }
 
-    public static Set<Integer> genNumbersByAlorithm2() {
-        Set<Integer> genNumbers = new HashSet<>();
-        genNumbers.add(pickNumber("Type2"));
-        genNumbers.add(pickNumber("Type3"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type5"));
+    private static String convertNumberFormat(int number) {
+        String formattedNumber = String.format("%02d", number);
+        return formattedNumber;
+    }
+
+    public static Set<String> genNumbersByAlorithm2() {
+        Set<String> genNumbers = new HashSet<>();
+        genNumbers.addAll(pickNumber("Type2",1));
+        genNumbers.addAll(pickNumber("Type3",1));
+        genNumbers.addAll(pickNumber("Type4", 3));
+        genNumbers.addAll(pickNumber("Type5",1));
 
         return genNumbers;
     }
@@ -40,6 +43,12 @@ public class NumberGenerator {
         List<NumberStat> collection = getNumbersSet(type);
 
         return pickNumber(collection);
+    }
+
+    private static Set<String> pickNumber(String type, int count) {
+        List<NumberStat> collection = getNumbersSet(type);
+
+        return pickNumber(collection, count);
     }
 
     private static List<NumberStat> getNumbersSet(String type) {
@@ -87,6 +96,27 @@ public class NumberGenerator {
         Random random = new Random();
 
         return random.nextInt(max);
+    }
+
+    public static Set<String> pickNumber(List<NumberStat> numStats, int count) {
+        Set<String> result = new HashSet<>();
+
+        List<Integer> randomIndex = getRandomIndex(numStats.size(), count);
+
+        for (Integer index : randomIndex) {
+            result.add(convertNumberFormat(numStats.get(index).getNumber()));
+        }
+
+        return result;
+    }
+    private static List<Integer> getRandomIndex(int max, int count) {
+        List<Integer> result = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < count; i++) {
+            result.add(random.nextInt(max));
+        }
+
+        return result;
     }
 
 }

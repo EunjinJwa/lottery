@@ -9,9 +9,9 @@ import lombok.ToString;
 public class PickNumberSet {
 
     private String no;
-    private Set<Integer> numbers;
+    private Set<String> numbers;
 
-    public PickNumberSet(int index, Set<Integer> numbers) {
+    public PickNumberSet(int index, Set<String> numbers) {
         this.no = parseNo(index);
         this.numbers = numbers;
     }
