@@ -3,8 +3,10 @@ package jinny.app.lottery.domain;
 import java.util.List;
 import jinny.app.lottery.webclient.LottoNumberResponse;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class LottoNumberFetchInfo {
 
     private int latestDrw;

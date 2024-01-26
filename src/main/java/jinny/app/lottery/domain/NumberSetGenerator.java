@@ -27,8 +27,7 @@ public class NumberSetGenerator {
     }
 
     // 1번 당첨 숫자 중 diff 가 기준 횟수의 diffRatio 이상 떨어진 숫자
-    public static List<NumberStat> getNumbersByOneHit() {
-        double diffRatio = 0.7;
+    public static List<NumberStat> getNumbersByOneHit(double diffRatio) {
         return IntStream.rangeClosed(1, 1)
             .mapToObj(hitCount -> numberStats.getNumStatsByHitCount(hitCount, false))
             .flatMap(List::stream)
@@ -37,5 +36,11 @@ public class NumberSetGenerator {
     }
 
 
-
+    public List<NumberStat> getNumbersByTwoHit(double diffRatio) {
+        return IntStream.rangeClosed(2, 2)
+            .mapToObj(hitCount -> numberStats.getNumStatsByHitCount(hitCount, false))
+            .flatMap(List::stream)
+            .filter(numStat -> numStat.getLastDiff() >= numberStats.calcDrwDiffCount(diffRatio) )
+            .collect(Collectors.toList());
+    }
 }

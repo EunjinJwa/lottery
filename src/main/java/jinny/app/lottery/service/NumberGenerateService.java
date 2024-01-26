@@ -31,6 +31,10 @@ public class NumberGenerateService {
         List<LottoNumberResponse> results = lottoNumberFetchInfo.getResults();
         results.stream().forEach(item -> numberStats.addNumStats(item));
 
+        System.out.println("* * * * * * * * * * * * * * * * * * * *");
+        System.out.println("Fetch Info : " + lottoNumberFetchInfo);
+        System.out.println("numberStats Info : " + numberStats);
+
         new NumberGenerator(numberStats);
     }
 
@@ -38,8 +42,8 @@ public class NumberGenerateService {
         List<PickNumberSet> pickNumbers = new ArrayList<>();
         pickNumbers.add(new PickNumberSet(1, NumberGenerator.genNumbersByAlorithm1()));
         pickNumbers.add(new PickNumberSet(2, NumberGenerator.genNumbersByAlorithm2()));
-        pickNumbers.add(new PickNumberSet(3, NumberGenerator.genNumbersByAlorithm2()));
-        pickNumbers.add(new PickNumberSet(4, NumberGenerator.genNumbersByAlorithm1()));
+        pickNumbers.add(new PickNumberSet(3, NumberGenerator.genNumbersByAlorithm3()));
+        pickNumbers.add(new PickNumberSet(4, NumberGenerator.genNumbersByAlorithm3()));
         pickNumbers.add(new PickNumberSet(5, NumberGenerator.genNumbersByAlorithm1()));
 
         return pickNumbers;
