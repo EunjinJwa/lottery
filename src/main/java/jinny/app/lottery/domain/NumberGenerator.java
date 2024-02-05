@@ -37,7 +37,7 @@ public class NumberGenerator {
             case "Type4":
                 return numberSetGenerator.getNumbersByHitCountRange(2, 3);
             case "Type5":
-                return numberSetGenerator.getNumbersByOneHit(0.7);
+                return numberSetGenerator.getNumbersByOneHit(0.5);
             case "Type6":
                 return numberSetGenerator.getNumbersByHitCountRange(3, 3);
             default:
@@ -47,26 +47,24 @@ public class NumberGenerator {
 
     public static Set<String> genNumbersByAlorithm1() {
         genNumbers = new TreeSet<>();
-        genNumbers.add(pickNumber("Type1"));
-        genNumbers.add(pickNumber("Type2"));
-        genNumbers.add(pickNumber("Type3"));
-        genNumbers.add(pickNumber("Type3"));
         genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Default"));
-
-
+        genNumbers.add(pickNumber("Type5"));
+        genNumbers.add(pickNumber("Type4"));
+        genNumbers.add(pickNumber("Type6"));
+        genNumbers.add(pickNumber("Type2"));
+        genNumbers.add(pickNumber("Type6"));
         System.out.println("Alg1 : " + genNumbers);
         return genNumbers;
     }
 
     public static Set<String> genNumbersByAlorithm2() {
         genNumbers = new TreeSet<>();
-        genNumbers.add(pickNumber("Type2"));
-        genNumbers.add(pickNumber("Type3"));
+        genNumbers.add(pickNumber("Type4"));
+        genNumbers.add(pickNumber("Type1"));
+        genNumbers.add(pickNumber("Type4"));
         genNumbers.add(pickNumber("Type3"));
         genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type5"));
+        genNumbers.add(pickNumber("Type6"));
         System.out.println("Alg2 : " + genNumbers);
 
         return genNumbers;
@@ -74,11 +72,11 @@ public class NumberGenerator {
 
     public static Set<String> genNumbersByAlorithm3() {
         genNumbers = new TreeSet<>();
-        genNumbers.add(pickNumber("Type0"));
         genNumbers.add(pickNumber("Type2"));
         genNumbers.add(pickNumber("Type3"));
+        genNumbers.add(pickNumber("Type3"));
         genNumbers.add(pickNumber("Type4"));
-        genNumbers.add(pickNumber("Type4"));
+        genNumbers.add(pickNumber("Type5"));
         genNumbers.add(pickNumber("Type4"));
         System.out.println("Alg3 : " + genNumbers);
         return genNumbers;
@@ -86,13 +84,25 @@ public class NumberGenerator {
 
     public static Set<String> genNumbersByAlorithm4() {
         genNumbers = new TreeSet<>();
-        genNumbers.add(pickNumber("Type0"));
-        genNumbers.add(pickNumber("Type3"));
+        genNumbers.add(pickNumber("Type5"));
+        genNumbers.add(pickNumber("Type2"));
         genNumbers.add(pickNumber("Type4"));
         genNumbers.add(pickNumber("Type6"));
-        genNumbers.add(pickNumber("Type6"));
+        genNumbers.add(pickNumber("Type4"));
         genNumbers.add(pickNumber("Default"));
         System.out.println("Alg4 : " + genNumbers);
+        return genNumbers;
+    }
+
+    public static Set<String> genNumbersByAlorithm5() {
+        genNumbers = new TreeSet<>();
+        genNumbers.add(pickNumber("Type4"));
+        genNumbers.add(pickNumber("Type4"));
+        genNumbers.add(pickNumber("Type3"));
+        genNumbers.add(pickNumber("Type5"));
+        genNumbers.add(pickNumber("Type6"));
+        genNumbers.add(pickNumber("Default"));
+        System.out.println("Alg5 : " + genNumbers);
         return genNumbers;
     }
 

@@ -43,9 +43,9 @@ public class NumberGenerateService {
         List<PickNumberSet> pickNumbers = new ArrayList<>();
         pickNumbers.add(new PickNumberSet(1, NumberGenerator.genNumbersByAlorithm1())); // A
         pickNumbers.add(new PickNumberSet(2, NumberGenerator.genNumbersByAlorithm2())); // B
-        pickNumbers.add(new PickNumberSet(3, NumberGenerator.genNumbersByAlorithm2())); // C
-        pickNumbers.add(new PickNumberSet(4, NumberGenerator.genNumbersByAlorithm3())); // D
-        pickNumbers.add(new PickNumberSet(5, NumberGenerator.genNumbersByAlorithm4())); // E
+        pickNumbers.add(new PickNumberSet(3, NumberGenerator.genNumbersByAlorithm3())); // C
+        pickNumbers.add(new PickNumberSet(4, NumberGenerator.genNumbersByAlorithm4())); // D
+        pickNumbers.add(new PickNumberSet(5, NumberGenerator.genNumbersByAlorithm5())); // E
 
         return pickNumbers;
     }
