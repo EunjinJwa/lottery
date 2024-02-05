@@ -6,13 +6,16 @@
   <title>LuckyNumber</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/webjars/bootstrap/5.3.0/dist/css/bootstrap.min.css">
+  <!-- CSS 파일 import -->
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
 </head>
 <body>
   <h1>Jinny's Lotto Number Generator</h1>
-  <h2>Generated Number Set</h2>
 
-  <table class="table">
+  <button id="generateButton" onclick="generateLottoNumbers()">번호 생성</button>
+
+  <table class="table" id="lottoTable">
     <thead>
     <tr>
       <th scope="col">ID</th>
@@ -29,6 +32,41 @@
     </tr>
     </tbody>
   </table>
+
+    <script th:inline="javascript">
+
+      function generateLottoNumbers() {
+        fetch('/lotto/get')
+        .then(response => response.json())
+        .then(data => {
+          // console.log(data);
+          // 여기에서 data 객체를 사용
+
+          // 결과를 표시할 Thymeleaf 변수 설정
+          var thResult = data;
+
+          // Thymeleaf 변수를 통해 테이블 갱신
+          var lottoTable = document.getElementById('lottoTable');
+          var tbody = lottoTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = ''; // 기존 데이터 삭제
+
+          thResult.forEach(set => {
+            var row = tbody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+
+            cell1.innerHTML = set.no;
+            cell2.innerHTML = set.numbers;
+            // ... Add more cells as needed
+          });
+
+
+        })
+        .catch(error => {
+          console.error('API 호출 중 오류 발생:', error);
+        });
+      }
+    </script>
 
 </body>
 </html>

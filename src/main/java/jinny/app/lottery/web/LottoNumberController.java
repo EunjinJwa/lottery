@@ -5,11 +5,9 @@ import java.util.List;
 import jinny.app.lottery.domain.PickNumberSet;
 import jinny.app.lottery.service.NumberGenerateService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/lotto")
@@ -21,15 +19,18 @@ public class LottoNumberController {
         this.numberGenerateService = numberGenerateService;
     }
 
+    @GetMapping("")
+    public String goHome() {
+
+        return "home.html";
+    }
+
     @GetMapping("/get")
-    public String generateLottoNumbers(
-        @RequestParam(defaultValue = "kevin") String requester,
-        Model model) {
+    public @ResponseBody List<PickNumberSet> generateLottoNumbers() {
 
-        System.out.println(OffsetDateTime.now() + " * * * * * * * * * " + requester);
+        System.out.println(OffsetDateTime.now() + " * * * * * * * * * ");
         List<PickNumberSet> pickNumberSets = numberGenerateService.generateNumberSet();
-        model.addAttribute("result", pickNumberSets);
 
-        return "home";
+        return pickNumberSets;
     }
 }
