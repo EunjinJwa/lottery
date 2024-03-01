@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class NumberGenerator {
 
@@ -14,14 +15,22 @@ public class NumberGenerator {
 
     public NumberGenerator(NumberStats numberStats) {
         new NumberSetGenerator(numberStats);
-        System.out.println("SET Type0: " + getNumbersSet("Type0"));
-        System.out.println("SET Type1: " + getNumbersSet("Type1"));
-        System.out.println("SET Type2: " + getNumbersSet("Type2"));
-        System.out.println("SET Type3: " + getNumbersSet("Type3"));
-        System.out.println("SET Type4: " + getNumbersSet("Type4"));
-        System.out.println("SET Type5: " + getNumbersSet("Type5"));
-        System.out.println("SET Type6: " + getNumbersSet("Type6"));
-        System.out.println("SET Default: " + getNumbersSet("Default"));
+        System.out.println("SET Type0: " + getNumbers("Type0"));
+        System.out.println("SET Type1: " + getNumbers("Type1"));
+        System.out.println("SET Type2: " + getNumbers("Type2"));
+        System.out.println("SET Type3: " + getNumbers("Type3"));
+        System.out.println("SET Type4: " + getNumbers("Type4"));
+        System.out.println("SET Type5: " + getNumbers("Type5"));
+        System.out.println("SET Type6: " + getNumbers("Type6"));
+        System.out.println("SET Default: " + getNumbers("Default"));
+    }
+
+    List<Integer> getNumbers(String type) {
+        List<NumberStat> numbersSet = getNumbersSet(type);
+
+        return numbersSet.stream()
+                .map(set -> set.getNumber())
+                .collect(Collectors.toList());
     }
 
     private static List<NumberStat> getNumbersSet(String type) {
@@ -125,6 +134,7 @@ public class NumberGenerator {
 
         String pickNumber = convertNumberFormat(numStats.get(index).getNumber());
         while (genNumbers.contains(pickNumber)) {
+            System.out.println("index retry : " + index);
             index = getRandomIndex(numStats.size());
             pickNumber = convertNumberFormat(numStats.get(index).getNumber());
         }
